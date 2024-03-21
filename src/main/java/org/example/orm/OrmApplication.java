@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.example.orm.repository.*;
+import org.example.orm.repositories.*;
 import org.example.orm.entities.*;
 
 import java.util.Arrays;
@@ -30,18 +30,18 @@ public class OrmApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<String> list = Arrays.asList("House", "Wilson", "Cuddy");
-        for (String doc : list){
+        List<String> list = Arrays.asList("House", "Wilson", "Joe");
+        for (String doctor : list) {
             Medecin medecin = new Medecin();
-            medecin.setName(doc);
-            medecin.setEmail(doc + "@houseMD.com");
-            medecin.setSpecialization(Math.random() < 0.5? "Cardiologist" : "GP");
+            medecin.setName(doctor);
+            medecin.setEmail(doctor + "@houseMD.com");
+            medecin.setSpecialization(Math.random() < 0.5 ? "Cardiologist" : "GP");
             medecinRepository.save(medecin);
         }
 
         // Add Patients
         list = Arrays.asList("Theo", "Edward", "Mariana");
-        for(String name : list){
+        for(String name : list) {
             Patient patient = new Patient();
             patient.setName(name);
             patient.setSick(Math.random() > 0.5);
@@ -49,24 +49,22 @@ public class OrmApplication implements CommandLineRunner {
             patientRepository.save(patient);
         }
 
-        // Add RendezVous
-
-        for (long i = 1L; i <= 3L; i++){
+        for (int i = 0; i < 3; i++){
             RendezVous rendezVous = new RendezVous();
             rendezVous.setCancelled(Math.random() < 0.5);
             rendezVous.setDate(new Date(124, Calendar.NOVEMBER, 20 + (int) i));
-            rendezVous.setPatient(patientRepository.findById(i).get());
-            rendezVous.setMedecin(medecinRepository.findById(i).get());
+            rendezVous.setPatient(patientRepository.findById((long) i).get());
+            rendezVous.setMedecin(medecinRepository.findById((long) i).get());
             rendezVousRepository.save(rendezVous);
         }
 
         // Add Consultation
 
-        for (long i = 1L; i <= 3L; i++) {
+        for (int i = 0; i < 3; i++) {
             Consultation consultation = new Consultation();
-            consultation.setDateConsultation(new Date(124, Calendar.NOVEMBER, 20 + (int) i));
+            consultation.setDateConsultation(new Date(124, Calendar.NOVEMBER, 20 + i));
             consultation.setRapport(Math.random() < 0.5 ? "Need To Run Tests" : "Perfectly normal");
-            consultation.setRendezVous(rendezVousRepository.findById(i).get());
+            consultation.setRendezVous(rendezVousRepository.findById((long) i).get());
             consultationRepository.save(consultation);
         }
     }

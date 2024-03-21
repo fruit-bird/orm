@@ -10,6 +10,7 @@ public class RendezVous {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    @Temporal(TemporalType.DATE)
     private Date date;
     private boolean cancelled;
     @ManyToOne
