@@ -14,7 +14,7 @@ public class Patient {
     private Date birthDay;
     private String name;
     private boolean sick;
-    @OneToMany (mappedBy = "patient", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private Collection<RendezVous> rendezVous;
 
     public String toString() {
