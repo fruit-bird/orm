@@ -32,11 +32,18 @@ public class PatientController {
     }
 
     @GetMapping("/patients")
-    public String showPatients(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
-        Page<Patient> patientPage = patientRepository.findAll(PageRequest.of(page, size));
+    public String showPatients(
+        Model model,
+        @RequestParam(name = "p", defaultValue = "0") int page,
+        @RequestParam(name = "s", defaultValue = "5") int size,
+        @RequestParam(name = "kw", defaultValue = "") String keyword
+    ) {
+        Page<Patient> patientPage = patientRepository.findByNameContains(keyword, PageRequest.of(page, size));
+
         model.addAttribute("patientPage", patientPage);
-//        model.addAttribute("pages", new int[patientPage.getTotalPages()]);
-//        model.addAttribute("currentPage", page);
+        model.addAttribute("pages", new int[patientPage.getTotalPages()]);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
 
         return "patients";
     }
