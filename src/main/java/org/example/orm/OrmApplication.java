@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.example.orm.repositories.*;
+import org.example.orm.repository.*;
 import org.example.orm.entities.*;
 
 import java.util.Date;

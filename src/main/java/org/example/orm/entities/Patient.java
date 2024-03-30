@@ -17,7 +17,7 @@ public class Patient {
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
     private Collection<RendezVous> rendezVous;
 
-    public String toString() {
-        return "ID: " + id + "\n" + "Name: " + name + "\n" + "Birth Day: " + birthDay + "\n" + (sick ? "Patient is sick" : "Patient is healthy");
+    public String toString(){
+        return "ID: " + id + "\n" + "Name: " + name + "\n" + "Birth Day: " + birthDay + "\n" + (sick? "Patient is sick" : "Patient is healthy");
     }
 }

@@ -1,4 +1,4 @@
-package org.example.orm.repositories;
+package org.example.orm.repository;
 
 import org.example.orm.entities.Patient;
 import org.springframework.data.domain.Page;

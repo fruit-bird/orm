@@ -1,4 +1,4 @@
-package org.example.orm.repositories;
+package org.example.orm.repository;
 
 import org.example.orm.entities.Consultation;
 import org.springframework.data.jpa.repository.JpaRepository;
