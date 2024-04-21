@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -52,5 +53,17 @@ public class PatientController {
     ) {
         patientRepository.deleteById(id);
         return "redirect:/patients?page=" + page + "&kw=" + keyword;
+    }
+
+    @GetMapping("/formPatients")
+    public String formPatients(Model model) {
+        model.addAttribute("patient", new Patient());
+        return "formPatients";
+    }
+
+    @PostMapping("/savePatient")
+    public String savePatient(Model model, Patient patient) {
+        patientRepository.save(patient);
+        return "formPatients";
     }
 }
