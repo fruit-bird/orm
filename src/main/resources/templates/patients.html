@@ -6,9 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-    <script src="webjars/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css}">
+    <script th:src="@{webjars/jquery/3.7.1/jquery.min.js}"></script>
 </head>
 <body>
 
@@ -40,6 +40,11 @@
                         <td th:text="${patient.name}"></td>
                         <td th:text="${patient.birthDay}"></td>
                         <td th:text="${patient.sick}"></td>
+                        <td>
+                            <a class="btn btn-success" th:href="@{/editPatient(id=${patient.id}, kw=${keyword}, p=${currentPage})}">
+                                Edit
+                            </a>
+                        </td>
                         <td>
                             <a class="btn btn-danger"
                                onclick="return confirm('Are you sure you want to delete?')"

@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="webjars/bootstrap/5.3.3/css/bootstrap.min.css">
-    <script src="webjars/bootstrap/5.3.3/js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <script th:src="@{webjars/bootstrap/5.3.3/js/bootstrap.bundle.js}"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-light">
@@ -17,8 +17,8 @@
                         Patients
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/formPatients}">Add</a></li>
                         <li><a class="dropdown-item" th:href="@{/patients}">Search</a></li>
+                        <li><a class="dropdown-item" th:href="@{/formPatients}">Add</a></li>
                     </ul>
                 </li>
             </ul>
