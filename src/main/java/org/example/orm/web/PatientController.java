@@ -27,10 +27,10 @@ public class PatientController {
 
     @GetMapping("/")
     public String test() {
-        return "hello";
+        return "redirect:/patients";
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/user/patients")
     public String showPatients(
             Model model,
             @RequestParam(name = "p", defaultValue = "0") int page,
@@ -47,23 +47,23 @@ public class PatientController {
         return "patients";
     }
 
-    @GetMapping("/patients/delete")
+    @GetMapping("admin/patients/delete")
     public String deletePatient(
             @RequestParam @NotNull Long id,
             @RequestParam(name = "p", defaultValue = "0") int page,
             @RequestParam(name = "kw", defaultValue = "") String keyword
     ) {
         patientRepository.deleteById(id);
-        return "redirect:/patients?p=" + page + "&kw=" + keyword;
+        return "redirect:/user/patients?p=" + page + "&kw=" + keyword;
     }
 
-    @GetMapping("/formPatients")
+    @GetMapping("/admin/formPatients")
     public String formPatients(Model model) {
         model.addAttribute("patient", new Patient());
         return "formPatients";
     }
 
-    @PostMapping("/savePatient")
+    @PostMapping("/admin/savePatient")
     public String savePatient(
             Model model,
             @Valid Patient patient,
@@ -76,10 +76,10 @@ public class PatientController {
         }
 
         patientRepository.save(patient);
-        return "redirect:/patients?p=" + page + "&kw=" + keyword;
+        return "redirect:/user/patients?p=" + page + "&kw=" + keyword;
     }
 
-    @GetMapping("/editPatient")
+    @GetMapping("/admin/editPatient")
     public String editPatient(
             Model model,
             @RequestParam @NotNull Long id,
