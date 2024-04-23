@@ -40,12 +40,12 @@
                         <td th:text="${patient.name}"></td>
                         <td th:text="${patient.birthDay}"></td>
                         <td th:text="${patient.sick}"></td>
-                        <td>
+                        <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                             <a class="btn btn-success" th:href="@{/admin/editPatient(id=${patient.id}, kw=${keyword}, p=${currentPage})}">
                                 Edit
                             </a>
                         </td>
-                        <td>
+                        <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                             <a class="btn btn-danger"
                                onclick="return confirm('Are you sure you want to delete?')"
                                th:href="@{/admin/patients/delete(id=${patient.id}, kw=${keyword}, p=${currentPage})}">

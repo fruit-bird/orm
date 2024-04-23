@@ -19,7 +19,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/user/patients}">Search</a></li>
-                        <li><a class="dropdown-item" th:href="@{/admin/formPatients}">Add</a></li>
+                        <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                            <a class="dropdown-item" th:href="@{/admin/formPatients}">Add</a>
+                        </li>
                     </ul>
                 </li>
             </ul>

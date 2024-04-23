@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,6 +49,7 @@ public class PatientController {
     }
 
     @GetMapping("admin/patients/delete")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deletePatient(
             @RequestParam @NotNull Long id,
             @RequestParam(name = "p", defaultValue = "0") int page,
@@ -58,12 +60,14 @@ public class PatientController {
     }
 
     @GetMapping("/admin/formPatients")
+    @PreAuthorize("hasRole('ADMIN')")
     public String formPatients(Model model) {
         model.addAttribute("patient", new Patient());
         return "formPatients";
     }
 
     @PostMapping("/admin/savePatient")
+    @PreAuthorize("hasRole('ADMIN')")
     public String savePatient(
             Model model,
             @Valid Patient patient,
@@ -80,6 +84,7 @@ public class PatientController {
     }
 
     @GetMapping("/admin/editPatient")
+    @PreAuthorize("hasRole('ADMIN')")
     public String editPatient(
             Model model,
             @RequestParam @NotNull Long id,
